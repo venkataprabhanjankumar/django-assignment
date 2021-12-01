@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <p class="lead">{% trans 'Create An  Account :' %}</p>
+    {% if fail %}
+    <p><span style="color: crimson">{{fail}} </span></p>
+  {% endif %}
+  <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">{% trans 'Register' %}</button>
+    <br/>
+    <a href="{% url 'login' %}" class="btn btn-link">{% trans 'Login' %}</a>
+  </form>
+{% endblock %}

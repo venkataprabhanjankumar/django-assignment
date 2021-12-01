@@ -1,0 +1,42 @@
+{% extends 'dashboard_base.html' %}
+
+{% block content %}
+    <a href="{% url 'new_product' %}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-2"></i> Create New Post</a>
+    <table class="table table-head-fixed text-nowrap" id="items-display-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+            <th>Weight</th>
+            <th>Price</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+            <tr>
+                <td>
+                    {{ product.name }}
+                </td>
+                <td>
+                    {{ product.weight }}
+                </td>
+                <td>
+                    {{ product.price }}
+                </td>
+                <td>
+                    {{ product.created_at }}
+                </td>
+                <td>
+                    {{ product.updated_at }}
+                </td>
+                <td>
+                    <a href="/products/product/edit/{{ product.id }}"><i class="fas fa-edit"></i></a>
+                    &nbsp;&nbsp;&nbsp;<a href="/products/product/delete/{{ product.id }}"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
